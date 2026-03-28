@@ -1,4 +1,4 @@
-﻿// ===== ADMIN PANEL =====
+// ===== ADMIN PANEL =====
 const adminToggle  = document.getElementById('admin-toggle');
 const adminPanel   = document.getElementById('admin-panel');
 const adminOverlay = document.getElementById('admin-overlay');
@@ -202,11 +202,16 @@ async function syncToGitHub() {
         const encoded = btoa(unescape(encodeURIComponent(payload)));
         const filePath = 'portfolio-data.json';
         const apiUrl = 'https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/' + filePath;
+        const headers = {
+            'Authorization': 'Bearer ' + GH_TOKEN,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+        };
 
         // Get current SHA if file exists
         let sha = null;
         const getRes = await fetch(apiUrl, {
-            headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' }
+            headers: { 'Authorization': 'Bearer ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' }
         });
         if (getRes.ok) {
             const existing = await getRes.json();
@@ -220,7 +225,7 @@ async function syncToGitHub() {
         const putRes = await fetch(apiUrl, {
             method: 'PUT',
             headers: {
-                'Authorization': 'token ' + GH_TOKEN,
+                'Authorization': 'Bearer ' + GH_TOKEN,
                 'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json'
             },
@@ -265,7 +270,7 @@ function showToast(msg) {
 window.addEventListener('DOMContentLoaded', () => {
     // Load data teks dari GitHub
     const apiUrl = 'https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/portfolio-data.json';
-    fetch(apiUrl, { headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' } })
+    fetch(apiUrl, { headers: { 'Authorization': 'Bearer ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' } })
         .then(res => res.ok ? res.json() : null)
         .then(file => {
             if (file && file.content) {
@@ -281,7 +286,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Load foto dari GitHub
     const photoUrl = 'https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/portfolio-photos.json';
-    fetch(photoUrl, { headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' } })
+    fetch(photoUrl, { headers: { 'Authorization': 'Bearer ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' } })
         .then(res => res.ok ? res.json() : null)
         .then(file => {
             if (file && file.content) {
@@ -453,7 +458,7 @@ function setupPhotoUpload(inputId, previewId, storageKey, applySelector) {
 async function syncPhotoToGitHub(key, url) {
     // Baca file photos.json dari GitHub, update key, push balik
     const apiUrl = 'https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/portfolio-photos.json';
-    const headers = { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' };
+    const headers = { 'Authorization': 'Bearer ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' };
 
     let photos = {}, sha = null;
     try {
