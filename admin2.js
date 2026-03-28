@@ -192,7 +192,7 @@ function saveToStorage() { localStorage.setItem('portfolioData', JSON.stringify(
 // ── GitHub Sync ───────────────────────────────────────────
 const GH_USER   = 'sayyid-habibie';
 const GH_REPO   = 'portofolio';
-const GH_TOKEN  = ['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'].join('');
+const GH_TOKEN  = ['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'].join('');
 const GH_BRANCH = 'main';
 
 async function syncToGitHub() {
