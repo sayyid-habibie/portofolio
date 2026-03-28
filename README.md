@@ -23,17 +23,32 @@ Portfolio website pribadi Muhammad Sayyid Habibie, mahasiswa S1 Informatika di S
 
 ```
 portfolio/
-├── index.html      # Struktur halaman utama
-├── style.css       # Semua styling & responsive
-├── script.js       # Navigasi, scroll reveal, skill bar, contact WA
-├── admin2.js       # Panel admin & manajemen konten
-├── image.png       # Foto profil utama
-├── img1.jpg        # Foto testimonial 1
-├── img2.jpg        # Foto testimonial 2
-├── img3.jpg        # Foto testimonial 3
-├── cv.pdf          # File CV (letakkan di sini)
+├── assets/
+│   ├── image.png       # Foto profil utama
+│   ├── img1.jpg        # Foto testimonial 1
+│   ├── img2.jpg        # Foto testimonial 2
+│   └── img3.jpg        # Foto testimonial 3
+├── index.html          # Struktur halaman utama
+├── style.css           # Semua styling & responsive
+├── script.js           # Navigasi, scroll reveal, skill bar, contact WA
+├── admin2.js           # Panel admin & manajemen konten
+├── cv.pdf              # File CV (letakkan di sini)
 └── README.md
 ```
+
+---
+
+## Cara Update Foto
+
+Foto disimpan di folder `assets/`. Untuk mengganti foto:
+
+1. Buka repo di **github.com**
+2. Masuk ke folder `assets/`
+3. Klik file yang ingin diganti → klik ikon pensil atau "Upload files"
+4. Upload foto baru dengan **nama yang sama** (`image.png`, `img1.jpg`, dst)
+5. Commit changes
+
+> Atau bisa juga lewat panel edit di website — foto tersimpan sementara di browser (localStorage).
 
 ---
 
